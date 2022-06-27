@@ -26,10 +26,11 @@ public class Main {
 
 			Password password = new Password(i + 1);
 			System.out.println("This is your generated password: " + password.getPasswordFinal());
-			System.out.print("\nPress Enter to generate another password");
+			System.out.print("\nPress Enter to generate another password or enter 'No' to terminate program: ");
 			o = scan.nextLine();
+			o = o.toLowerCase();
 			System.out.println();
-		} while (o instanceof String);
+		} while (o instanceof String && !o.equals("no"));
 
 	}
 }
