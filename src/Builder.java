@@ -40,6 +40,7 @@ public class Builder {
 	}
 
 	public void setUpper() {
+		numberOfTrue++;
 		this.upper = true;
 	}
 
@@ -48,6 +49,7 @@ public class Builder {
 	}
 
 	public void setNumber() {
+		numberOfTrue++;
 		this.number = true;
 	}
 
@@ -56,6 +58,7 @@ public class Builder {
 	}
 
 	public void setSpecial() {
+		numberOfTrue++;
 		this.special = true;
 	}
 

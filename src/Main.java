@@ -24,7 +24,7 @@ public class Main {
 				}
 
 			} while (flag || i < 4);
-			Builder builder = new Builder(i);
+			Builder builder = new Builder(i + 1);
 			do {
 				String affirm;
 				Scanner scanner2 = new Scanner(System.in);
