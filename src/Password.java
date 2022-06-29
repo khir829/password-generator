@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Password {
@@ -6,6 +7,7 @@ public class Password {
 	private String specialCharacters = "!@#$";
 	private String numbers = "1234567890";
 	private Random random = new Random();
+	private ArrayList<String> pass = new ArrayList<String>();
 	private String passwordFinal;
 	StringBuffer sb = new StringBuffer();
 
@@ -40,6 +42,32 @@ public class Password {
 
 	}
 
+	private Password(Builder builder) {
+
+		for (int i = 0; i < builder.length - (1 + builder.numberOfTrue); i++) {
+			int posLow = random.nextInt(lowerCaseLetters.length());
+			pass.add(lowerCaseLetters.substring(posLow, posLow + 1));
+		}
+
+		if (builder.upper) {
+			int posUp = random.nextInt(capitalCaseLetters.length());
+			pass.add(capitalCaseLetters.substring(posUp, posUp + 1));
+		}
+		if (builder.number) {
+			int posNumber = random.nextInt(numbers.length());
+			pass.add(numbers.substring(posNumber, posNumber + 1));
+		}
+		if (builder.special) {
+			int posSpecial = random.nextInt(specialCharacters.length());
+			pass.add(specialCharacters.substring(posSpecial, posSpecial + 1));
+		}
+
+		for (String s : pass) {
+			sb.append(s);
+		}
+		passwordFinal = sb.toString();
+	}
+
 	public static class Builder {
 		private int length;
 		private boolean upper = false;
@@ -67,6 +95,10 @@ public class Password {
 			this.special = true;
 			numberOfTrue++;
 			return this;
+		}
+
+		public Password build() {
+			return new Password(this);
 		}
 	}
 
