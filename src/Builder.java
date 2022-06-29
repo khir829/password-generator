@@ -9,24 +9,6 @@ public class Builder {
 		this.length = length;
 	}
 
-	public Builder addUpper() {
-		this.upper = true;
-		numberOfTrue++;
-		return this;
-	}
-
-	public Builder addNumber() {
-		this.number = true;
-		numberOfTrue++;
-		return this;
-	}
-
-	public Builder addSpecial() {
-		this.special = true;
-		numberOfTrue++;
-		return this;
-	}
-
 	public int getLength() {
 		return length;
 	}
