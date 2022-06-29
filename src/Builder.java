@@ -39,24 +39,24 @@ public class Builder {
 		return upper;
 	}
 
-	public void setUpper(boolean upper) {
-		this.upper = upper;
+	public void setUpper() {
+		this.upper = true;
 	}
 
 	public boolean isNumber() {
 		return number;
 	}
 
-	public void setNumber(boolean number) {
-		this.number = number;
+	public void setNumber() {
+		this.number = true;
 	}
 
 	public boolean isSpecial() {
 		return special;
 	}
 
-	public void setSpecial(boolean special) {
-		this.special = special;
+	public void setSpecial() {
+		this.special = true;
 	}
 
 	public int getNumberOfTrue() {
