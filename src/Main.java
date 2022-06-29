@@ -24,7 +24,7 @@ public class Main {
 
 			} while (flag || i < 4);
 
-			Password password = new Password(i + 1);
+			Password password = new Password.Builder(i + 1).addUpper().addNumber().addSpecial().build();
 			System.out.println("This is your generated password: " + password.getPasswordFinal());
 			System.out.print("\nPress Enter to generate another password or enter 'No' to terminate program: ");
 			o = scan.nextLine();
