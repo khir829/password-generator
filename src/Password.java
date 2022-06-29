@@ -6,7 +6,7 @@ public class Password {
 	private String specialCharacters = "!@#$";
 	private String numbers = "1234567890";
 	private Random random = new Random();
-	protected String passwordFinal;
+	private String passwordFinal;
 	StringBuffer sb = new StringBuffer();
 
 	public Password(int length) {
@@ -38,6 +38,36 @@ public class Password {
 
 		passwordFinal = sb.toString();
 
+	}
+
+	public static class Builder {
+		private int length;
+		private boolean upper = false;
+		private boolean number = false;
+		private boolean special = false;
+		private int numberOfTrue = 0;
+
+		public Builder(int length) {
+			this.length = length;
+		}
+
+		public Builder addUpper() {
+			this.upper = true;
+			numberOfTrue++;
+			return this;
+		}
+
+		public Builder addNumber() {
+			this.number = true;
+			numberOfTrue++;
+			return this;
+		}
+
+		public Builder addSpecial() {
+			this.special = true;
+			numberOfTrue++;
+			return this;
+		}
 	}
 
 	public String getPasswordFinal() {
