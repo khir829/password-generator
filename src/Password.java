@@ -9,8 +9,14 @@ public class Password {
 	private Random random = new Random();
 	private ArrayList<String> pass = new ArrayList<String>();
 	private String passwordFinal;
-	StringBuffer sb = new StringBuffer();
+	private StringBuffer sb = new StringBuffer();
 
+	/**
+	 * This constructor takes in a builder class data type and outputs a randomly
+	 * generated password
+	 * 
+	 * @param builder the details of what the password should contain
+	 */
 	public Password(Builder builder) {
 
 		for (int i = 0; i < builder.getLength() - (1 + builder.getNumberOfTrue()); i++) {
