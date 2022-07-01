@@ -20,27 +20,29 @@ public class Password {
 	public Password(Builder builder) {
 
 		for (int i = 0; i < builder.getLength() - (1 + builder.getNumberOfTrue()); i++) {
-			int posLow = random.nextInt(lowerCaseLetters.length());
-			pass.add(lowerCaseLetters.substring(posLow, posLow + 1));
+			addToPassword(lowerCaseLetters);
 		}
 
 		if (builder.isUpper()) {
-			int posUp = random.nextInt(capitalCaseLetters.length());
-			pass.add(capitalCaseLetters.substring(posUp, posUp + 1));
+			addToPassword(capitalCaseLetters);
+
 		}
 		if (builder.isNumber()) {
-			int posNumber = random.nextInt(numbers.length());
-			pass.add(numbers.substring(posNumber, posNumber + 1));
+			addToPassword(numbers);
 		}
 		if (builder.isSpecial()) {
-			int posSpecial = random.nextInt(specialCharacters.length());
-			pass.add(specialCharacters.substring(posSpecial, posSpecial + 1));
+			addToPassword(specialCharacters);
 		}
 
 		for (String s : pass) {
 			sb.append(s);
 		}
 		passwordFinal = sb.toString();
+	}
+
+	public void addToPassword(String characters) {
+		int pos = random.nextInt(characters.length());
+		pass.add(characters.substring(pos, pos + 1));
 	}
 
 	public String getPasswordFinal() {
