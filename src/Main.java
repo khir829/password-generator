@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
+	public static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		boolean flag;
 		int i = 0;
 		String o = null;
-		Scanner scan = new Scanner(System.in);
 		/*
 		 * The program will loop until the user decides to terminate it by entering 'No'
 		 * at the end. The program will do the following:
@@ -28,19 +28,26 @@ public class Main {
 		do {
 
 			do { // Length of the password is determined
-				try {
-					Scanner scanner1 = new Scanner(System.in);
-					System.out.print("Enter a password length that is 4 or more characters: ");
-					i = scanner1.nextInt();
-					if (i < 4) {
-						System.out.print("Input value is less than 4. ");
+
+				System.out.print("Enter a password length that is 4 or more characters: ");
+				flag = false;
+				String length = Main.scanner.next();
+				char[] ch = length.toCharArray();
+				for (char c : ch) {
+					if (!Character.isDigit(c)) {
+						System.out.print("Enter only integer values. ");
+						flag = true;
+						break;
 					}
-					flag = false;
-				} catch (Exception e) {
-					System.out.print("Enter only integer values. ");
-					flag = true;
 				}
 
+				if (!flag) {
+					i = Integer.parseInt(length);
+					if (i < 4) {
+						System.out.print("Input value is less than 4. ");
+						flag = true;
+					}
+				}
 			} while (flag || i < 4);
 
 			Builder builder = new Builder(i + 1);
@@ -48,9 +55,9 @@ public class Main {
 			do { // The use of capital letters in the password is determined
 
 				String affirm;
-				Scanner scanner2 = new Scanner(System.in);
+
 				System.out.print("Is a capital letter required in your password? Y/N: ");
-				affirm = scanner2.nextLine();
+				affirm = Main.scanner.next();
 				affirm = affirm.toLowerCase();
 				if (affirm.equals("y") || affirm.equals("yes")) {
 					builder.setUpper();
@@ -61,13 +68,13 @@ public class Main {
 					System.out.print("Please enter Yes or No. ");
 					flag = true;
 				}
+
 			} while (flag);
 
 			do { // The use of numbers in the password is determined
 				String affirm;
-				Scanner scanner3 = new Scanner(System.in);
 				System.out.print("Is a number required in your password? Y/N: ");
-				affirm = scanner3.nextLine();
+				affirm = Main.scanner.next();
 				affirm = affirm.toLowerCase();
 				if (affirm.equals("y") || affirm.equals("yes")) {
 					builder.setNumber();
@@ -78,13 +85,13 @@ public class Main {
 					System.out.print("Please enter Yes or No. ");
 					flag = true;
 				}
+
 			} while (flag);
 
 			do { // The use of special characters in the password is determined
 				String affirm;
-				Scanner scanner4 = new Scanner(System.in);
 				System.out.print("Is a special character required in your password? Y/N: ");
-				affirm = scanner4.nextLine();
+				affirm = Main.scanner.next();
 				affirm = affirm.toLowerCase();
 				if (affirm.equals("y") || affirm.equals("yes")) {
 					builder.setSpecial();
@@ -95,13 +102,14 @@ public class Main {
 					System.out.print("Please enter Yes or No. ");
 					flag = true;
 				}
+
 			} while (flag);
 
 			// Generate password and prompt user to continue generating passwords or quit
 			Password password = new Password(builder);
 			System.out.println("This is your generated password: " + password.getPasswordFinal());
-			System.out.print("\nPress Enter to generate another password or enter 'No' to terminate program: ");
-			o = scan.nextLine();
+			System.out.print("\nEnter anything to generate another password or enter 'No' to terminate program: ");
+			o = Main.scanner.next();
 			o = o.toLowerCase();
 			System.out.println();
 		} while (o instanceof String && !o.equals("no"));
